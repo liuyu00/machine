@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/reset.css">
+  <title>水果机</title>
+  <style>
+    #wrap {
+      width: 100vw;
+      height: 100vh;
+      background: url('./images/bg-9b07d222f0.jpg');
+      background-size: cover;
+      background-position: center center;
+      display: flex;
+    }
+    #box {
+      margin: auto;
+      width: 100%;
+      padding: 0 40px;
+      position: relative;
+    }
+    #box .row {
+      width: 100%;
+      display: flex;
+    }
+    #box .row a {
+      overflow: hidden;
+      background: #f00;
+      flex: 1;
+      margin-left: 10px;
+      margin-top: 10px;
+      visibility: hidden;
+    }
+    #box .row a.grid {
+      visibility:visible;
+      background: url('./images/gride-bg_03.png');
+      background-size: cover;
+      border: 2px solid transparent;
+    }
+    #box .row a:first-child {
+      margin-left: 0;
+    }
+    #box .row a.grid.active {
+      border: 2px solid #fff;
+    }
+    #box .row a .height{
+      margin-top: 100%;
+    }
+    #start {
+      outline: none;
+      border: 0;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 80px;
+      height: 80px;
+      background-color: #ff7251;
+      color: #ffdd18;
+      font-size: 1.4rem;
+      text-align: center;
+      box-shadow: 0 -0.7rem 0 #ff5236 inset, 0 0.3rem 0 #ffd6c9;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+    #start:disabled {
+      filter: grayscale();
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <div id="box">
+      <div class="row">
+        <a href="javascript:;" data-index="0" class="grid active">
+          <div class="height"></div>
+        </a>
+        <a href="javascript:;" data-index="1" class="grid">
+          <div class="height"></div>
+        </a>
+        <a href="javascript:;" data-index="2" class="grid">
+          <div class="height"></div>
+        </a>
+        <a href="javascript:;" data-index="3" class="grid">
+          <div class="height"></div>
+        </a>
+      </div>
+      <div class="row">
+        <a href="javascript:;" data-index="11" class="grid">
+          <div class="height"></div>
+        </a>
+        <a href="javascript:;">
+          <div class="height"></div>
+        </a>
+        <a href="javascript:;">
+          <div class="height"></div>
+        </a>
+        <a href="javascript:;" data-index="4" class="grid">
+          <div class="height"></div>
+        </a>
+      </div>
+      <div class="row">
+        <a href="javascript:;" data-index="10" class="grid">
+          <div class="height"></div>
+        </a>
+        <a href="javascript:;">
+          <div class="height"></div>
+        </a>
+        <a href="javascript:;">
+          <div class="height"></div>
+        </a>
+        <a href="javascript:;" data-index="5" class="grid">
+          <div class="height"></div>
+        </a>
+      </div>
+      <div class="row">
+        <a href="javascript:;" data-index="9" class="grid">
+          <div class="height"></div>
+        </a>
+        <a href="javascript:;" data-index="8" class="grid">
+          <div class="height"></div>
+        </a>
+        <a href="javascript:;" data-index="7" class="grid">
+          <div class="height"></div>
+        </a>
+        <a href="javascript:;" data-index="6" class="grid">
+          <div class="height"></div>
+        </a>
+      </div>
+      <button id="start">开始</button>
+    </div>
+  </div>
+  <script src="./js/Lottery.js"></script>
+  <script>
+    var lottery = new Lottery({
+      callback: () => {
+        startBtn.removeAttribute('disabled')
+      }
+    })
+    var startBtn = document.querySelector('#start')
+
+    startBtn.onclick = function () {
+      startBtn.setAttribute('disabled', true)
+      lottery.run()
+      setTimeout(() => {
+        lottery.setResult(4)
+      }, 2000)
+    }
+  </script>
+</body>
+</html>
